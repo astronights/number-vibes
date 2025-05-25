@@ -1,0 +1,21 @@
+{
+  "name": "number-vibes",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
+  },
+  "author": "Shubhankar Agrawal",
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-react-swc": "^3.10.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.0",
+    "vite": "^6.3.5",
+    "vite-plugin-svgr": "^4.3.0",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}
