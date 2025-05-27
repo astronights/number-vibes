@@ -1,33 +1,29 @@
-import { Box, Heading, Container, Text, Button, Stack, createIcon } from "@chakra-ui/react";
+import { Box, Heading, Container, Text, Button, Stack, createIcon, Input } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 const Vibe = () => {
-    const profile = {'headerRole': ''};
-    const [roleIndex, setRoleIndex] = useState(0);
-    const [visible, setVisible] = useState(true);
-    const roles = profile.headerRole.split(';')
+    const [number, setNumber] = useState(0);
+    const [displayNumber, setDisplayNumber] = useState('');
+    
+    const [locale, setLocale] = useState('en-US');
 
     useEffect(() => {
-        const interval = setInterval(() => {
-          setVisible(false);
-    
-          setTimeout(() => {
-            setRoleIndex((prevIndex) => (prevIndex + 1) % roles.length);
-            setVisible(true);
-          }, 500);
-        }, 5000);
-    
-        return () => clearInterval(interval); 
-      }, [roles.length]);
+        
+    }, [number]);
+
+    const checkNumber = (e: any) => {
+        e.preventDefault();
+        try {
+            const input_number = parseInt(e.target.value);
+            setDisplayNumber(number.toLocaleString(locale));
+            setNumber(input_number);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <>
-            <Heading>
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
-                    rel="stylesheet"
-                />
-            </Heading>
 
             <Container maxW={"4xl"} id="header">
                 <Stack
@@ -36,20 +32,27 @@ const Vibe = () => {
                     pb={{ base: 20, md: 16 }}
                     pt={{ base: 36, md: 32 }}
                 >
+                    <Input 
+                        placeholder="Your number" 
+                        size="2xl" 
+                        variant={"flushed"} 
+                        value={displayNumber}
+                        onChange={checkNumber}
+                    />
                     <Heading
                         fontWeight={400}
                         fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
                         lineHeight={"110%"}
                     >
-                         <br />
+                        <br />
                         <Text
                             as="span"
                             style={{
-                                opacity: visible ? 1 : 0, // Toggle opacity
+                                opacity: 1, // Toggle opacity
                                 transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
                             }}
                         >
-                            {roles[roleIndex]}
+                            'Yo'
                         </Text>
                     </Heading>
                     <Text
