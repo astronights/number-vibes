@@ -1,12 +1,19 @@
-// import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-// import "./assets/css/index.sass";
-// import App from "./components/App";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-const container: HTMLElement = document.getElementById("root")!;
-const root = createRoot(container);
-root.render(
-  <BrowserRouter>
-    {/* <App /> */}
-  </BrowserRouter>
-);
+// import './assets/index.sass';
+import App from './components/App';
+import { theme } from './theme';
+
+import { ChakraProvider } from '@chakra-ui/react';
+import { ColorModeProvider } from './components/ui/color-mode';
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <ChakraProvider value={theme}>
+      <ColorModeProvider>
+        <App />
+      </ColorModeProvider>
+    </ChakraProvider>
+  </React.StrictMode>,
+)
