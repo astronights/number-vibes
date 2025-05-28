@@ -1,8 +1,10 @@
 import { Box, Heading, Container, Text, Button, Stack, Input, NativeSelect } from "@chakra-ui/react";
+import { RiMagicLine } from "react-icons/ri"
 import { useEffect, useState } from "react";
 import { supportedLocales } from "../constants";
 
 const Vibe = () => {
+    const [curNumber, setCurNumber] = useState(0);
     const [rawInput, setRawInput] = useState("");
     const [formatted, setFormatted] = useState("");
     const [locale, setLocale] = useState("");
@@ -10,11 +12,13 @@ const Vibe = () => {
     useEffect(() => {
         if (rawInput === "") {
             setFormatted("");
+            setCurNumber(0);
             return;
         }
 
         const num = parseInt(rawInput, 10);
         if (!isNaN(num)) {
+            setCurNumber(num);
             const formattedNumber =
                 locale === "" ? num.toString() : new Intl.NumberFormat(locale).format(num);
             setFormatted(formattedNumber);
@@ -26,6 +30,10 @@ const Vibe = () => {
         if (raw.length <= 10) {
             setRawInput(raw);
         }
+    };
+
+    const callLLMAPI = () => {
+        
     };
 
     return (
@@ -60,6 +68,10 @@ const Vibe = () => {
                     </NativeSelect.Field>
                     <NativeSelect.Indicator />
                 </NativeSelect.Root>
+
+                <Button variant="outline" onClick={callLLMAPI} disabled={curNumber <= 0}>
+                    Vibe <RiMagicLine />
+                </Button>
 
                 <Heading
                     fontWeight={400}
