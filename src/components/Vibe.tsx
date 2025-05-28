@@ -61,7 +61,7 @@ const Vibe = () => {
                 <NativeSelect.Root
                     size="sm"
                     width={'240px'}
-                    onChange={(e) => setLocale(e.target.value)}
+                    onChange={e => setLocale((e.target as HTMLSelectElement).value)}
                 >
                     <NativeSelect.Field>
                         <option value="">Select locale</option>
