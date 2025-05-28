@@ -1,5 +1,6 @@
-import {Box, Heading, Container, Text, Button, Stack, Input } from "@chakra-ui/react";
+import { Box, Heading, Container, Text, Button, Stack, Input, NativeSelect } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { supportedLocales } from "../constants";
 
 const Vibe = () => {
     const [rawInput, setRawInput] = useState("");
@@ -14,20 +15,17 @@ const Vibe = () => {
 
         const num = parseInt(rawInput, 10);
         if (!isNaN(num)) {
-            const formattedNumber = locale === "" ? num.toString() : new Intl.NumberFormat(locale).format(num);
+            const formattedNumber =
+                locale === "" ? num.toString() : new Intl.NumberFormat(locale).format(num);
             setFormatted(formattedNumber);
         }
     }, [rawInput, locale]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const raw = e.target.value.replace(/\D/g, ""); // Remove non-digits
+        const raw = e.target.value.replace(/\D/g, ""); // Only digits
         if (raw.length <= 10) {
             setRawInput(raw);
         }
-    };
-
-    const toggleLocale = () => {
-        setLocale((prev) => (prev === "en-US" ? "fr-FR" : "en-US"));
     };
 
     return (
@@ -37,6 +35,7 @@ const Vibe = () => {
                 textAlign={"center"}
                 pb={{ base: 20, md: 16 }}
                 pt={{ base: 36, md: 32 }}
+                spaceY={4}
             >
                 <Input
                     placeholder="Enter up to 10 digits"
@@ -46,9 +45,21 @@ const Vibe = () => {
                     onChange={handleInputChange}
                 />
 
-                {/* <Checkbox onChange={toggleLocale} isChecked={locale === "fr-FR"}>
-          Use French locale
-        </Checkbox> */}
+                <NativeSelect.Root
+                    size="sm"
+                    width={'240px'}
+                    onChange={(e) => setLocale(e.target.value)}
+                >
+                    <NativeSelect.Field>
+                        <option value="">Select locale</option>
+                        {supportedLocales.map((loc) => (
+                            <option key={loc} value={loc}>
+                                {loc}
+                            </option>
+                        ))}
+                    </NativeSelect.Field>
+                    <NativeSelect.Indicator />
+                </NativeSelect.Root>
 
                 <Heading
                     fontWeight={400}
