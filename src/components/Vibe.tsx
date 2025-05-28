@@ -1,13 +1,15 @@
 import { Box, Heading, Container, Text, Button, Stack, Input, NativeSelect } from "@chakra-ui/react";
 import { RiMagicLine } from "react-icons/ri"
 import { useEffect, useState } from "react";
-import { supportedLocales } from "../constants";
+import { prompt, supportedLocales } from "../constants";
+import { callGemini } from "../api/genai";
 
 const Vibe = () => {
     const [curNumber, setCurNumber] = useState(0);
     const [rawInput, setRawInput] = useState("");
     const [formatted, setFormatted] = useState("");
     const [locale, setLocale] = useState("");
+    const [response, setResponse] = useState("");
 
     useEffect(() => {
         if (rawInput === "") {
@@ -33,7 +35,10 @@ const Vibe = () => {
     };
 
     const callLLMAPI = () => {
-        
+        const promptWithNumber = prompt.replace("{formatted_number}", formatted);
+        callGemini(promptWithNumber).then((res) => {
+            setResponse(res);
+        });
     };
 
     return (
@@ -72,6 +77,10 @@ const Vibe = () => {
                 <Button variant="outline" onClick={callLLMAPI} disabled={curNumber <= 0}>
                     Vibe <RiMagicLine />
                 </Button>
+
+                <Text>
+                    {response}
+                </Text>
 
                 <Heading
                     fontWeight={400}
