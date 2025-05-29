@@ -1,7 +1,6 @@
 import '../assets/app.css';
 import NavBar from './NavBar';
 import Vibe from './Vibe';
-import Footer from './Footer'
 
 const App = () => {
   // Available Colours:
@@ -13,7 +12,6 @@ const App = () => {
     <>
       <NavBar title={title} />
       <Vibe />
-      <Footer />
     </>
   );
 }

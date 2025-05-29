@@ -1,8 +1,13 @@
-import { Flex, Stack, HStack, Link } from "@chakra-ui/react";
-import { ColorModeButton } from "./ui/color-mode"
+import { Flex, Stack, HStack, Link, IconButton } from "@chakra-ui/react";
+import { RiGithubLine } from "react-icons/ri";
 import * as TbIcons from "react-icons/tb";
+import { ColorModeButton } from "./ui/color-mode"
+
+
 
 const NavBar = (props: { title: string }) => {
+
+    const githubUrl = "https://github.com/astronights";
 
     const scrollToTop = () => {
         document.querySelector("#header")!.scrollIntoView({ behavior: "smooth" });
@@ -21,7 +26,6 @@ const NavBar = (props: { title: string }) => {
             <Flex
                 px={4}
                 h={16}
-                boxShadow={"base"}
                 zIndex="sticky"
                 position="fixed"
                 as="header"
@@ -29,9 +33,7 @@ const NavBar = (props: { title: string }) => {
                 justifyContent={"space-between"}
                 w="100%"
                 borderWidth="1px"
-                borderColor="border.disabled"
                 bg="chakra-body-bg"
-                // color="fg.disabled"
             >
                 <Link onClick={scrollToTop}>
                     <HStack gap={'0.3rm'}>
@@ -48,6 +50,11 @@ const NavBar = (props: { title: string }) => {
 
                 <Flex alignItems={"center"}>
                     <Stack direction={"row"} spaceX={3}>
+                        <IconButton
+                            variant={"outline"}
+                            onClick={() => window.open(githubUrl, "_blank")}>
+                            <RiGithubLine />
+                        </IconButton>
                         <ColorModeButton />
                     </Stack>
                 </Flex>
