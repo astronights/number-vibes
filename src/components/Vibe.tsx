@@ -1,4 +1,4 @@
-import { Box, Heading, Container, Text, Button, Stack, Input, NativeSelect, HStack } from "@chakra-ui/react";
+import { Box, Heading, Container, Text, Button, Stack, Input, NativeSelect, HStack, VStack, List } from "@chakra-ui/react";
 import { RiMagicLine } from "react-icons/ri"
 import { useEffect, useState } from "react";
 import { prompt, supportedLocales } from "../constants";
@@ -49,18 +49,19 @@ const Vibe = () => {
         setStatus('Loading');
         try {
             callGemini(promptWithNumber).then((res) => {
-                const json_res = res.split("```json")[1].split("```")[0];
-                setResponse(JSON.parse(json_res));
+                const json_res = JSON.parse(res.split("```json")[1].split("```")[0]);
+                setResponse(json_res);
+                console.log(json_res);
                 setStatus("");
             });
         } catch (e) {
-            console.error(e);
             setStatus('Error');
+            console.error(e);
         }
     };
 
     return (
-        <Container maxW={"xl"} id="header">
+        <Container maxW={"4xl"} id="header">
             <Stack
                 as={Box}
                 textAlign={"center"}
@@ -101,13 +102,6 @@ const Vibe = () => {
                     </Button>
                 </HStack>
 
-
-                {Object.entries(response).map(([key, value]) => (
-                    <Text key={key} alignItems={"start"}>
-                        <strong>{key}:</strong> {value.toString()}
-                    </Text>
-                ))}
-
                 <Heading
                     fontWeight={40}
                     fontSize={{ base: "2xl" }}
@@ -130,6 +124,21 @@ const Vibe = () => {
                         </Text>
                     )}
                 </Heading>
+
+
+                {Object.entries(response).map(([key, value]) => (
+                    <VStack key={key} align="start">
+                        <Text fontWeight="bold">{key}</Text>
+                        <List.Root align={"start"}  pl={4}>
+                            {(value as string[]).map((v, i) => (
+                                <List.Item textAlign={"left"} key={i}>
+                                    {v.trim()}
+                                </List.Item>
+                            ))}
+                        </List.Root>
+                    </VStack>
+                ))}
+
             </Stack>
         </Container>
     );
