@@ -1,7 +1,7 @@
 import { Flex, Stack, HStack, Link, IconButton } from "@chakra-ui/react";
 import { RiGithubLine } from "react-icons/ri";
 import * as TbIcons from "react-icons/tb";
-import { ColorModeButton } from "./ui/color-mode"
+import { ColorModeButton, useColorModeValue } from "./ui/color-mode"
 
 
 
@@ -33,7 +33,7 @@ const NavBar = (props: { title: string }) => {
                 justifyContent={"space-between"}
                 w="100%"
                 borderWidth="1px"
-                bg="chakra-body-bg"
+                backgroundColor={useColorModeValue("gray.150", "gray.950")}
             >
                 <Link onClick={scrollToTop}>
                     <HStack gap={'0.3rm'}>

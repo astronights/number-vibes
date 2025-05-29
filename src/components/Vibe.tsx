@@ -64,7 +64,7 @@ const Vibe = () => {
             <Stack
                 as={Box}
                 textAlign={"center"}
-                pb={{ base: 16, md: 16 }}
+                pb={{ base: 4, md: 4 }}
                 pt={{ base: 24, md: 24 }}
                 spaceY={4}
             >
