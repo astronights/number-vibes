@@ -78,7 +78,7 @@ const Vibe = () => {
                     <Button variant="outline" 
                             onClick={callLLMAPI} 
                             disabled={curNumber <= 0}
-                            width={'150px'}>
+                            width={'130px'}>
                         Vibe <RiMagicLine />
                     </Button>
                 </HStack>
