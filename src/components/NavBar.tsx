@@ -30,7 +30,8 @@ const NavBar = (props: { title: string }) => {
                 w="100%"
                 borderWidth="1px"
                 borderColor="border.disabled"
-                color="fg.disabled"
+                bg="chakra-body-bg"
+                // color="fg.disabled"
             >
                 <Link onClick={scrollToTop}>
                     <HStack gap={'0.3rm'}>

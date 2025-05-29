@@ -1,13 +1,22 @@
-import { Box, Container, Link, Stack } from "@chakra-ui/react";
+import { Box, Container, Link, Stack, Flex } from "@chakra-ui/react";
 
 const Footer = () => {
   return (
     <>
-      <Box
+      <Flex
+        px={4}
+        h={12}
+        boxShadow={"base"}
+        zIndex="sticky"
+        position="fixed"
+        as="footer"
+        alignItems={"center"}
+        justifyContent={"space-between"}
+        w="100%"
         borderWidth="1px"
         borderColor="border.disabled"
-        color="fg.disabled"
-        as="footer"
+        bg="chakra-body-bg"
+        bottom={0}
       >
         <Container
           as={Stack}
@@ -19,7 +28,7 @@ const Footer = () => {
             Github @astronights
           </Link>
         </Container>
-      </Box>
+      </Flex>
     </>
   );
 }

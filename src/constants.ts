@@ -20,5 +20,7 @@ Return the answer as a JSON object with the following fields:
 - Aesthetic: A short summary of the number in aesthetic.
 - Pop Culture: A short summary of the number in pop culture.
 
+Please return only the json starting with \`\`\`json and ending with \`\`\`
+
 The number to analyze is {formatted_number}.
 `
