@@ -28,6 +28,9 @@ const NavBar = (props: { title: string }) => {
                 alignItems={"center"}
                 justifyContent={"space-between"}
                 w="100%"
+                borderWidth="1px"
+                borderColor="border.disabled"
+                color="fg.disabled"
             >
                 <Link onClick={scrollToTop}>
                     <HStack gap={'0.3rm'}>

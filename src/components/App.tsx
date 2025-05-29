@@ -1,4 +1,4 @@
-// import '../assets/app.sass';
+import '../assets/app.css';
 import NavBar from './NavBar';
 import Vibe from './Vibe';
 import Footer from './Footer'

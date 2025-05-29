@@ -1,4 +1,4 @@
-import { Box, Heading, Container, Text, Button, Stack, Input, NativeSelect } from "@chakra-ui/react";
+import { Box, Heading, Container, Text, Button, Stack, Input, NativeSelect, HStack } from "@chakra-ui/react";
 import { RiMagicLine } from "react-icons/ri"
 import { useEffect, useState } from "react";
 import { prompt, supportedLocales } from "../constants";
@@ -42,7 +42,7 @@ const Vibe = () => {
     };
 
     return (
-        <Container maxW={"4xl"} id="header">
+        <Container maxW={"xl"} id="header">
             <Stack
                 as={Box}
                 textAlign={"center"}
@@ -50,33 +50,38 @@ const Vibe = () => {
                 pt={{ base: 36, md: 32 }}
                 spaceY={4}
             >
-                <Input
-                    placeholder="Enter up to 10 digits"
-                    size="lg"
-                    variant={"flushed"}
-                    value={formatted}
-                    onChange={handleInputChange}
-                />
+                <HStack>
+                    <Input
+                        placeholder="Up to 10 digits"
+                        size="lg"
+                        variant={"flushed"}
+                        value={formatted}
+                        onChange={handleInputChange}
+                    />
 
-                <NativeSelect.Root
-                    size="sm"
-                    width={'240px'}
-                    onChange={e => setLocale((e.target as HTMLSelectElement).value)}
-                >
-                    <NativeSelect.Field>
-                        <option value="">Select locale</option>
-                        {supportedLocales.map((loc) => (
-                            <option key={loc} value={loc}>
-                                {loc}
-                            </option>
-                        ))}
-                    </NativeSelect.Field>
-                    <NativeSelect.Indicator />
-                </NativeSelect.Root>
+                    <NativeSelect.Root
+                        size="sm"
+                        width={'200px'}
+                        onChange={e => setLocale((e.target as HTMLSelectElement).value)}
+                    >
+                        <NativeSelect.Field>
+                            <option value="">Locale</option>
+                            {supportedLocales.map((loc) => (
+                                <option key={loc} value={loc}>
+                                    {loc}
+                                </option>
+                            ))}
+                        </NativeSelect.Field>
+                        <NativeSelect.Indicator />
+                    </NativeSelect.Root>
 
-                <Button variant="outline" onClick={callLLMAPI} disabled={curNumber <= 0}>
-                    Vibe <RiMagicLine />
-                </Button>
+                    <Button variant="outline" 
+                            onClick={callLLMAPI} 
+                            disabled={curNumber <= 0}
+                            width={'150px'}>
+                        Vibe <RiMagicLine />
+                    </Button>
+                </HStack>
 
                 <Text>
                     {response}
@@ -91,12 +96,6 @@ const Vibe = () => {
                         'Yo'
                     </Text>
                 </Heading>
-
-                <Stack direction={"column"} align={"center"} alignSelf={"center"}>
-                    <Button rounded={"full"} px={6}>
-                        Let's connect!
-                    </Button>
-                </Stack>
             </Stack>
         </Container>
     );
