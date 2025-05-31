@@ -51,7 +51,6 @@ const Vibe = () => {
             callGemini(promptWithNumber).then((res) => {
                 const json_res = JSON.parse(res.split("```json")[1].split("```")[0]);
                 setResponse(json_res);
-                console.log(json_res);
                 setStatus("");
             });
         } catch (e) {
